@@ -7,8 +7,8 @@
 
 To ensure seamless execution of our project, the following dependencies are required:
 
-* Python == 3.8.11
-* Pytorch == 2.0.1
+* Python == 3.12.3
+* Pytorch == 2.5.1
 * cudatoolkit == 11.0.221
 
 We export our conda virtual environment as environment.yaml. You can use the following command to create the environment.
