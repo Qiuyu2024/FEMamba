@@ -23,45 +23,41 @@ This ensures all dependencies are correctly installed, allowing you to focus on 
 
 The datasets used in our training and testing are orgnized as follows:
 
-| Task                           | Training Set                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                              Testing Set                                                                              | Visual Results |
+| Task                           | Training Set                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                              Testing Set                                                                              
 |:-------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------: |
-| lightweight Image SR           | LightSR:[DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/)<br />                                                                                                                                                                                                                                                                                                                                                                                |               Set5 + Set14 + BSD100 + Urban100 + Manga109 [[download](https://drive.google.com/file/d/1n-7pmwjP0isZBK7w3tx2y8CTastlABx1/view?usp=sharing)]               |  Coming Soon  |
-| Gaussian Color Image Denoising | [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) +  [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar) + [BSD400](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz) + [WED](http://ivc.uwaterloo.ca/database/WaterlooExploration/exploration_database_and_code.rar) <br />[complete DFWB_RGB [download](https://drive.google.com/file/d/1jPgG_URDQZ4kyXaMMXJ8AZ8jEErCdKuM/view?usp=share_link)] |CBSD68 + Kodak24 + McMaster + Urban100  [[download](https://drive.google.com/file/d/1baLpOjNlTCNbREUDAZf9Lso6YCeUOQER/view?usp=sharing)]                 |  Coming Soon  | | [GoPro](https://drive.google.com/file/d/1abXSfeRGrzj2mQ2n2vIBHtObU6vXvr7C/view) + [HIDE](https://drive.google.com/file/d/1XRomKYJF1H92g1EuD06pCQe4o6HlwB7A/view?usp=sharing) |  [Download](https://drive.google.com/drive/folders/1cA3PgLYGTW_ofC8wPBR3DUlhpvuRDwuw?usp=sharing)  |
-| Image Dehazing                 | Indoor & Outdoor:[RESIDE](https://sites.google.com/view/reside-dehaze-datasets/reside-standard?authuser=0) (including 13990 indoor and 313950 outdoor images)<br />Mix: RESIDE-6K  (6000 images) <br />[Training Set [download](https://drive.google.com/drive/folders/1oaQSpdYHxEv-nMOB7yCLKfw2NDCJVtrx)]                                                                                                                                      |                                 SOTS / RESIDE-Mix [[download](https://drive.google.com/drive/folders/1oaQSpdYHxEv-nMOB7yCLKfw2NDCJVtrx)]                                 |  Coming Soon  |
+| lightweight Image SR           | LightSR:[DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/)<br />                                                                                                                                                                                                                                                                                                                                                                                |               Set5 + Set14 + BSD100 + Urban100 + Manga109 [[download](https://drive.google.com/file/d/1n-7pmwjP0isZBK7w3tx2y8CTastlABx1/view?usp=sharing)]               | 
+| Gaussian Color Image Denoising | [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) +  [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar) + [BSD400](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz) + [WED](http://ivc.uwaterloo.ca/database/WaterlooExploration/exploration_database_and_code.rar) <br />[complete DFWB_RGB [download](https://drive.google.com/file/d/1jPgG_URDQZ4kyXaMMXJ8AZ8jEErCdKuM/view?usp=share_link)] |CBSD68 + Kodak24 + McMaster [[download](https://drive.google.com/file/d/1baLpOjNlTCNbREUDAZf9Lso6YCeUOQER/view?usp=sharing)]                 | | [GoPro](https://drive.google.com/file/d/1abXSfeRGrzj2mQ2n2vIBHtObU6vXvr7C/view) + [HIDE](https://drive.google.com/file/d/1XRomKYJF1H92g1EuD06pCQe4o6HlwB7A/view?usp=sharing) |  [Download](https://drive.google.com/drive/folders/1cA3PgLYGTW_ofC8wPBR3DUlhpvuRDwuw?usp=sharing)  |
+| Image Dehazing                 | Indoor & Outdoor:[RESIDE](https://sites.google.com/view/reside-dehaze-datasets/reside-standard?authuser=0) (including 13990 indoor and 313950 outdoor images)<br />                                                                                                                                 |                                 SOTS [[download](https://drive.google.com/drive/folders/1oaQSpdYHxEv-nMOB7yCLKfw2NDCJVtrx)]                                 | 
 
 ### Training and Testing Commands on Super-Resolution
 
 ```bash
-# Training commands for tiny version of x2, x3, x4 lightSR (<900K) (~3 days)
-CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc_per_node=2 --master_port=1268 basicsr/trainF.py -opt options/train/train_MaIR_T_lightSR_x2.yml --launcher pytorch
-CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc_per_node=2 --master_port=1268 basicsr/trainF.py -opt options/train/train_MaIR_T_lightSR_x3.yml --launcher pytorch
-CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc_per_node=2 --master_port=1268 basicsr/trainF.py -opt options/train/train_MaIR_T_lightSR_x4.yml --launcher pytorch
+# Training commands for scale of x2, x3, x4 lightSR 
+CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc_per_node=2 --master_port=8888 basicsr/train.py -opt options/train/train_FEMamba_lightSR_x2.yml --launcher pytorch
+CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc_per_node=2 --master_port=8888 basicsr/train.py -opt options/train/train_FEMamba_lightSR_x3.yml --launcher pytorch
+CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc_per_node=2 --master_port=8888 basicsr/train.py -opt options/train/train_FEMamba_lightSR_x4.yml --launcher pytorch
 
-# Testing commands for small version of x2, x3, x4 lightSR (~1.3M)
-python basicsr/test.py -opt options/test/test_MaIR_S_lightSR_x2.yml
-python basicsr/test.py -opt options/test/test_MaIR_S_lightSR_x3.yml
-python basicsr/test.py -opt options/test/test_MaIR_S_lightSR_x4.yml
+# Testing commands for scale of x2, x3, x4 lightSR 
+python basicsr/test.py -opt options/test/test_FEMamba_lightSR_x2.yml
+python basicsr/test.py -opt options/test/test_FEMamba_lightSR_x3.yml
+python basicsr/test.py -opt options/test/test_FEMamba_lightSR_x4.yml
 ```
-
 ### Training and Testing Commands on Color Image Denoising
-
 ```bash
 # Training commands for Color Denoising with sigma=50
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node=8 --master_port=1268 basicsr/trainF.py -opt options/train/train_MaIR_CDN_s50.yml --launcher pytorch
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc_per_node=8 --master_port=8888 basicsr/trainF.py -opt options/train/train_FEMamba_CDN_s50.yml --launcher pytorch
 
 # Testing commands for Color Denoising with sigma=50
-python basicsr/test.py -opt options/test/test_MaIR_CDN_s50.yml
-
+python basicsr/test.py -opt options/test/test_FEMamba_CDN_s50.yml
 ```
 
 ### Training and Testing Commands on Image Dehazing
-
 ```bash
-# Training commands for Image Dehazing (~3 days)
-CUDA_VISIBLE_DEVICES=0,1 torchrun --nproc_per_node=8 --master_port=1268 realDenoising/basicsr/trainF.py -opt realDenoising/options/train/train_MaIR_ITS.yml --launcher pytorch
+# Training commands for Image Dehazing
+torchrun --nproc_per_node=8 --master_port=8888 realDenoising/basicsr/trainF.py -opt realDenoising/options/train/train_FEMamba_ITS.yml --launcher pytorch
 
 # Testing commands for Image Dehazing
-python realDenoising/basicsr/test.py -opt realDenoising/options/test/test_MaIR_ITS.yml
+python realDenoising/basicsr/test.py -opt realDenoising/options/test/test_FEMamba_ITS.yml
 
 ```
 
