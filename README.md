@@ -1,8 +1,6 @@
 #  Enhancing Lightweight Image Super-Resolution through Frequency-Enhanced Mamba Networks
 
 
-> **Abstract:** Image Super-Resolution (SR) aims to enhance low-resolution images to high-resolution counterparts with superior quality. Despite notable advancements using deep learning, maintaining computational efficiency while capturing long-range dependencies remains challenging. Inspired by state space models, we introduce the Frequency Enhanced Mamba Network (FEMN), designed to integrate global and local image features across frequency and spatial domains. Our approach incorporates a Frequency Feature Extraction Module (FFEM) for adaptive frequency cue extraction and a Localized Spatial Aggregation Module (LSAM) for enhanced spatial variation representation. Extensive experiments on standard benchmarks demonstrate FEMN's superior performance and efficiency, achieving state-of-the-art reconstruction quality while maintaining low computational complexity.
-
 ## Environment & Dependencies
 
 To ensure seamless execution of our project, the following dependencies are required:
